@@ -1,0 +1,132 @@
+function doPost(e) {
+  // Define the sheet name based on the value of 'event' parameter
+  var sheetName = e.parameter.event;
+
+
+  // Open the spreadsheet by its ID
+  var sheet = SpreadsheetApp.openById('1ylqwNacJcX0r0BfSjCcrHqGsb8Mz9EeeRIcJHPREjKM').getSheetByName(sheetName);
+
+  // If the sheet does not exist, create a new sheet with the determined name
+  if (!sheet) {
+    var spreadsheet = SpreadsheetApp.openById('1ylqwNacJcX0r0BfSjCcrHqGsb8Mz9EeeRIcJHPREjKM');
+    spreadsheet.insertSheet(sheetName);
+    sheet = spreadsheet.getSheetByName(sheetName);
+  }
+
+  // Create an array of data to append to the sheet
+  var rowData = [
+    e.parameter.college,
+    e.parameter.name,
+    e.parameter.email,
+    e.parameter.contactNumber,
+    e.parameter.member1,
+    e.parameter.member2,
+    e.parameter.member3,
+  ];
+
+  // Append the data to the sheet
+  sheet.appendRow(rowData);
+
+  var sheet = SpreadsheetApp.openById('1ylqwNacJcX0r0BfSjCcrHqGsb8Mz9EeeRIcJHPREjKM').getSheetByName('ParticipantInfo');
+  var mailto = SpreadsheetApp.openById('1ylqwNacJcX0r0BfSjCcrHqGsb8Mz9EeeRIcJHPREjKM').getSheetByName('Certificates');
+
+  if (!sheet) {
+    var spreadsheet = SpreadsheetApp.openById('1ylqwNacJcX0r0BfSjCcrHqGsb8Mz9EeeRIcJHPREjKM');
+    spreadsheet.insertSheet('ParticipantInfo');
+    sheet = spreadsheet.getSheetByName('ParticipantInfo');
+  }
+
+  if (!sheet) {
+    var spreadsheet = SpreadsheetApp.openById('1ylqwNacJcX0r0BfSjCcrHqGsb8Mz9EeeRIcJHPREjKM');
+    spreadsheet.insertSheet('Certificates');
+    mailto = spreadsheet.getSheetByName('Certificates');
+  }
+
+  var leaderData = [
+    e.parameter.name,
+    e.parameter.email
+  ];
+
+  mailto.appendRow(leaderData);
+
+  leaderData.push(e.parameter.contactNumber);
+  leaderData.push(e.parameter.event);
+
+  sheet.appendRow(leaderData);
+
+  var team = [];
+
+  if (e.parameter.member1 !== '') {
+    var member1Data = [e.parameter.member1, e.parameter.email];
+    mailto.appendRow(member1Data);
+    member1Data.push(e.parameter.contactNumber);
+    member1Data.push(e.parameter.event);
+    sheet.appendRow(member1Data);
+    team.push( e.parameter.member1)
+  }
+
+  if (e.parameter.member2 !== '') {    
+    var member2Data = [e.parameter.member2, e.parameter.email];
+    mailto.appendRow(member2Data);
+    member2Data.push(e.parameter.contactNumber);
+    member2Data.push(e.parameter.event);
+    sheet.appendRow(member2Data);
+    team.push( e.parameter.member2)
+  }
+
+  if (e.parameter.member3 !== '') {    
+    var member3Data = [e.parameter.member3, e.parameter.email];
+    mailto.appendRow(member3Data);
+    member3Data.push(e.parameter.contactNumber);
+    member3Data.push(e.parameter.event);
+    sheet.appendRow(member3Data);
+    team.push( e.parameter.member3)
+  }
+
+  sendConfirmationEmail(e.parameter.name, e.parameter.event, e.parameter.email, team);
+
+  // Return a success message
+  return ContentService.createTextOutput('Success').setMimeType(ContentService.MimeType.TEXT);
+}
+function sendConfirmationEmail(name, event, email, teamMembers) {
+  // Construct the email body with a table
+  var emailBody = '<table style="width:100%;max-width:500px;margin: 0 auto;" cellpadding="0" cellspacing="0" border="0">';
+  
+  // Header Image
+  emailBody += '<tr><td width="100%" style="text-align:left; padding: 20px; background-color:#2f2f2f;">';
+  emailBody += '<center><img src="https://res.cloudinary.com/djbvxtdmg/image/upload/v1706123541/TakshaColorblockNoBG_l1ykhd.png" alt="Header Image" style="max-width:60%; height:auto;"></center>';
+  emailBody += '</td></tr>';
+
+  emailBody += '<tr><td width="100%" style="background-color:#f2f2f2; color: #2f2f2f; padding: 20px; text-align:justify;">';
+  emailBody += 'Dear ' + name + ',<br><br>';
+  emailBody += 'Congratulations! Your online registration for ' + event + ' at Taksha\'24 is now confirmed.<br><br>';
+  emailBody += 'We extend our sincere appreciation for your commitment to joining Taksha\'24, and we express our gratitude for your forthcoming participation.<br><br>';
+  emailBody += 'To ensure a seamless event experience, please be advised that finalizing your registration requires completing the necessary payment at the registration desk on the event day. Your cooperation in this matter is paramount.<br><br>';
+  emailBody += 'Furthermore, we urge you to thoroughly review the disclaimer available on the event\'s "Learn More" page. This document contains crucial information regarding restricted participation in certain events post-registration.<br><br>';
+  emailBody += 'As a mandatory requirement, kindly ensure that you have a valid form of identification, such as your college ID card, to facilitate entry to the venue. In cases where a college ID is unavailable, a recognized photo ID will be accepted.<br><br>';
+  emailBody += 'Your adherence to these directives is greatly appreciated. We anticipate your active involvement in Taksha\'24 and value your cooperation.<br><br>';
+
+  // Add information about team members if they exist
+  if (teamMembers.length > 0) {
+    if (teamMembers.length === 1) {
+      emailBody += 'Additionally, kindly inform your team member ' + teamMembers[0] + ' to ensure coordinated participation and enhance your collective experience at Taksha\'24.<br><br>';
+    } else {
+      if (teamMembers.length === 2) {
+        emailBody += 'Additionally, kindly inform your team member ' + teamMembers[0] + ' and ' + teamMembers[1] + ' to ensure coordinated participation and enhance your collective experience at Taksha\'24.<br><br>';
+      }
+      else {
+        emailBody += 'Additionally, kindly inform your team members ' + teamMembers[0] + ', ' + teamMembers[1] + ' and ' + teamMembers[2] + ' to ensure coordinated participation and enhance your collective experience at Taksha\'24.<br><br>';
+      }
+    }
+  }
+
+  emailBody += 'Should you or your team have any further questions or require assistance, please feel free to reach out.<br><br>';
+  emailBody += 'Best Regards,<br>Taksha\'24 PR Team</td></tr></table>';
+
+  // Send the email
+  MailApp.sendEmail({
+    to: email,
+    subject: 'Confirmation of your Online Registration for Taksha\'24',
+    htmlBody: emailBody,
+  });
+}

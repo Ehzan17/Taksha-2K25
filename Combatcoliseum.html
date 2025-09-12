@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      id="viewport"
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover"
+    />
+    <script type="text/javascript" src="Data/Libraries/jQuery.js"></script>
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Regular 400.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Italic 400.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Bold 700.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Black 900.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Thin 250.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/The Youngest Serif.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Estrand 400.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link rel="preload" as="image" href="Data/Animations/SpinnerMedium.svg" />
+    <link rel="preload" as="image" href="Data/Animations/SpinnerSmall.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="Design/Colors.css" />
+    <link rel="stylesheet" type="text/css" href="Design/Fonts.css" />
+    <link rel="stylesheet" type="text/css" href="Design/NavBar.css" />
+    <link rel="stylesheet" type="text/css" href="Design/Events.css" />
+    <title>Taksha'24 - Lethal Legion</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="Data/Favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="Data/Favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="Data/Favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="Data/Favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="Data/Favicon/safari-pinned-tab.svg"
+      color="#000000"
+    />
+    <link rel="shortcut icon" href="Data/Favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta
+      name="msapplication-config"
+      content="Data/Favicon/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#000000" />
+  </head>
+  <body class="light">
+    <center>
+      <img
+        id="page-loader"
+        class="hide"
+        src="Data/Animations/SpinnerMedium.svg"
+      />
+    </center>
+    <nav class="hide">
+      <div class="nav-content">
+        <a href="Home.html" class="logo"> TAKSHA'25 </a>
+        <div class="nav-links">
+          <a href="Home.html">HOME</a>
+          <a href="Home.html#events">EVENTS</a>
+        </div>
+      </div>
+    </nav>
+    <div id="container" class="main hide">
+      <div class="first-con">
+        <div class="first-con-img">
+          <img src="Data\Taksha new\Broucherspng\‘25-1\Combatcoliseum.png" alt="" />
+        </div>
+        <div class="heading-first-con">
+          <p>COMPETITIONS</p>
+          <h1>Combat Coliseum -<br />Esports Competiton</h1>
+        </div>
+      </div>
+      <div class="second-con">
+        <div class="heading-second-con">
+          <h2>Prizes worth</h2>
+          <h1>Rs. 3K <br /></h1>
+        </div>
+        <div class="para-second-con">
+          <h2>Guidelines PDF</h2>
+          <button
+            onclick="downloadPdf('Data/Taksha new/Broucherpdf/Combat Coliseum.pdf','Combat Coliseum.pdf')"
+          >
+            Download
+          </button>
+        </div>
+      </div>
+      <div class="third-con">
+        <div class="para-third-con">
+          <p>Event Date</p>
+          <b>06 Feb 2024</b>
+        </div>
+        <div class="para-third-con">
+          <p>Time</p>
+          <b>12:00 PM</b>
+        </div>
+        <div class="para-third-con-spcl">
+          <p style="color: #ffffff99">Reg Fee</p>
+          <b>₹100</b>
+        </div>
+        <div class="para">
+          <button onclick="//window.location.href ='Register.html?detail=ll';">
+            Register
+          </button>
+        </div>
+      </div>
+      <div class="fourth-con">
+        <div class="heading-fourth-con">
+          <h2>Description</h2>
+        </div>
+        <div class="para-fourth-con">
+          <p>
+            Enter the arena of Lethal Legion, our mobile gaming event. Compete
+            against the best, showcase your gaming prowess, and emerge
+            victorious in this digital battleground.
+          </p>
+        </div>
+      </div>
+
+      <div class="sixth-con">
+        <div class="heading-sixth-con">
+          <h2>Event Structure</h2>
+          <ul>
+            <li>Squads must consist of a maximum of four members.</li>
+            <li>
+              All registered squads compete in a single, intense Erangel Classic
+              match.
+            </li>
+            <li>The last surviving squad is crowned the champion.</li>
+            <li>
+              Fair play and sportsmanship are non-negotiable; any violation may
+              result in disqualification.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="fourth-con">
+        <div class="heading-fourth-con">
+          <h2>Disclaimer</h2>
+        </div>
+        <div class="para-fourth-con">
+          <p>
+           
+          </p>
+        </div>
+      </div>
+
+      <div class="seventh-con">
+        <div class="heading-seventh-con">
+          <h2>Contacts</h2>
+        </div>
+        <div class="seventh-con-info">
+          <div class="grp-seventh-con">
+            <img class="seventh-con-img" src="Data/Icons/Phone.png" />
+            <div class="para-seventh-con">
+              <b>Johanson D Almeida</b>
+              <a href="tel:+919061247670" style="color: #ffffff99"
+                >9061247670</a
+              >
+            </div>
+          </div>
+          <div class="grp-seventh-con">
+            <img class="seventh-con-img" src="Data/Icons/Phone.png" />
+            <div class="para-seventh-con">
+              <b>Sreedevi</b>
+              <a href="tel:+918921052442" style="color: #ffffff99"
+                >8921052442</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="hide footer"
+      ><span onclick="window.location.href = ('Terms and Conditions.html');"
+        >Terms of Use</span
+      >
+      |
+      <span onclick="window.location.href = ('Privacy Policy.html');"
+        >Privacy Policy</span
+      >
+      |
+      <span onclick="window.location.href = ('Credits.html');">Credits</span> |
+      <span
+        >Copyright © 2024
+        <span onclick="window.location.href = ('index.html');" class="taksha"
+          >TAKSHA'24</span
+        ></span
+      ></a
+    >
+  </body>
+  <script type="text/javascript" src="Interaction/NavBar.js"></script>
+  <noscript>
+    <div
+      style="
+        box-sizing: bordeborder-box;
+        text-align: center;
+        margin: 30px;
+        padding: 20px;
+        background-color: #ffdcdc;
+        border: 1px solid red;
+        border-radius: 5px;
+      "
+    >
+      <p>
+        This website requires JavaScript to function. Please enable JavaScript
+        in your browser settings to view this page.
+      </p>
+    </div>
+  </noscript>
+  <script type="text/javascript">
+    document.getElementById("page-loader").classList.remove("hide");
+  </script>
+  <script type="text/javascript">
+    function handleLoad() {
+      const loader = document.getElementById("page-loader");
+      const content = document.getElementById("container");
+      const navBar = document.querySelector("nav");
+      const footer = document.querySelector(".footer");
+
+      if (loader && content) {
+        loader.remove();
+        content.classList.remove("hide");
+        if (navBar) {
+          navBar.classList.remove("hide");
+        }
+        if (footer) {
+          footer.classList.remove("hide");
+        }
+      }
+    }
+
+    window.addEventListener("load", handleLoad);
+  </script>
+</html>

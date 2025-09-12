@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      id="viewport"
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover"
+    />
+    <script type="text/javascript" src="Data/Libraries/jQuery.js"></script>
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Regular 400.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Italic 400.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Bold 700.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Black 900.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Montserrat Thin 250.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/The Youngest Serif.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="Data/Fonts/Estrand 400.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link rel="preload" as="image" href="Data/Animations/SpinnerMedium.svg" />
+    <link rel="preload" as="image" href="Data/Animations/SpinnerSmall.svg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="Design/Colors.css" />
+    <link rel="stylesheet" type="text/css" href="Design/Fonts.css" />
+    <link rel="stylesheet" type="text/css" href="Design/NavBar.css" />
+    <link rel="stylesheet" type="text/css" href="Design/Home.css" />
+    <link rel="stylesheet" type="text/css" href="Design/Countdown.css" />
+    <link rel="stylesheet" type="text/css" href="Design/Register.css" />
+    <title>Taksha'24 - Register</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="Data/Favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="Data/Favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="Data/Favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="Data/Favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="Data/Favicon/safari-pinned-tab.svg"
+      color="#000000"
+    />
+    <link rel="shortcut icon" href="Data/Favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta
+      name="msapplication-config"
+      content="Data/Favicon/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#000000" />
+  </head>
+  <body>
+    <div id="notification" class="notification">
+      <img src="Data/Icons/Alert.png" />
+      <h2>
+        Apologies, but you can't join this event due to a scheduling conflict
+        with your current selection. Thank you for your understanding.
+      </h2>
+    </div>
+
+    <div id="registered" class="notification">
+      <img src="Data/Icons/Completed.png" />
+      <h2>
+        Thank you for confirming your attendance. Please finalize your
+        registration on the event day by making the required payment. We
+        appreciate your cooperation.
+      </h2>
+    </div>
+
+    <div class="container">
+
+    <h1></h1>
+    <p></p>
+    <div class="box">
+      <form id="myForm" action="/api/register" method="POST">
+        <div class="input-bx">
+          <input type="text" id="clg-name" name="college" required="required" />
+          <span>Name of College</span>
+        </div>
+        <p class="error hide">Enter a valid name without numbers or special characters.
+        </p>
+        <div class="input-bx">
+          <input type="text" id="std-name" name="name" required="required" />
+          <span>Name</span>
+        </div>
+        <p class="error hide">Enter a valid name without numbers or special characters.
+        </p>
+        <div class="input-bx">
+          <input
+            type="text"
+            id="std-email"
+            name="email"
+            required="required"
+          />
+          <span>Email</span>
+        </div>
+        <p class="error hide">Enter a valid email address.</p>
+        <div class="input-bx">
+          <input
+            type="text"
+            id="std-num"
+            name="contactNumber"
+            required="required"
+          />
+          <span>Contact Number</span>
+        </div>
+        <p class="error hide">Enter a valid phone number.</p>
+        <div class="input-bx" id="extraInputBox" style="display: none">
+          <input type="text" id="std-mem1" name="member1" />
+          <span>Name of Member 2</span>
+        </div>
+        <p class="error hide">Enter a valid name without numbers or special characters.
+        </p>
+        <div class="input-bx" id="xtraInputBox" style="display: none">
+          <input type="text" id="std-mem2" name="member2" />
+          <span>Name of Member 3</span>
+        </div>
+        <p class="error hide">Enter a valid name without numbers or special characters.
+        </p>
+        <div class="input-bx" id="traInputBox" style="display: none">
+          <input type="text" id="std-mem3" name="member3" />
+          <span>Name of Member 4</span>
+        </div>
+        <p class="error hide">Enter a valid name without numbers or special characters.
+        </p>
+        <div class="input-bx" style="display: none">
+          <input type="text" id="raInputBox" value="" name="event" />
+        </div>
+        <div id="submit-bx" class="input-bx">
+          <input id="submit" type="submit" />
+          <center>
+            <img
+              id="submit-loader"
+              style="display: none"
+              src="Data/Animations/SpinnerSmall.svg"
+            />
+          </center>
+        </div>
+        <p class="message" style="display: none">
+          Thank you for joining&nbsp<span>TAKSHA'24</span>
+        </p>
+      </form>
+      <h3 class="other-events">Additional Participatory Events</h3>
+      <div class="event-list">
+        <a id="hp" href="Hacknpatch.html"  class="event-names">Hack'N Patch</a>
+        <a id="tq" href="ThinkQuest.html" class="event-names">Think Quest</a>
+        <a id="mm" href="mindtomodel.html" class="event-names">Mind To Model</a>
+        <a id="bc" href="Bytetheclue.html" class="event-names">Byte The Clue</a>
+        <a id="zd" href="Zenthra.html" class="event-names">Zenthra</a>
+        <a id="cc" href="Combatcoliseum.html" class="event-names">Combat Coliseum</a>
+        <a id="bt" href="Battleofboots.html" class="event-names">Battle Of Boots</a>
+      </div>
+    </div>
+  </div>
+    <script
+      type="text/javascript"
+      src="Interaction/InputLabelHandling.js"
+    ></script> 
+    <script type="text/javascript" src="Interaction/Register.js"></script>
+    <script></script>
+  </body>
+</html>
