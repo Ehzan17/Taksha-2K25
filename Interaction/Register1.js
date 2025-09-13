@@ -31,7 +31,7 @@ function hideAndDisableEvents(currentId, disableList) {
 
 // Update the page content based on event selected
 switch (detailValue) {
-  case "op": // ByteTheClue
+  case "bc": // ByteTheClue
     hideAndDisableEvents("op", []);
     document.querySelector("h1").innerHTML = "ByteTheClue";
     document.querySelector("p").innerHTML = "TREASURE HUNTING EVENT";
@@ -48,13 +48,13 @@ switch (detailValue) {
     hideAndDisableEvents("tq", ["ll", "bb"]);
     document.querySelector("h1").innerHTML = "THINK QUEST";
     document.querySelector("p").innerHTML = "IDEA PITCHING EVENT";
-    document.getElementById("extraInputBox").style.display = "flex";
-    document.querySelector('input[name="member1"]').required = true;
-    document.getElementById("xtraInputBox").style.display = "flex";
-    document.getElementById("raInputBox").value = "ThinkQuest";
+    // document.getElementById("extraInputBox").style.display = "flex";
+    // document.querySelector('input[name="member1"]').required = true;
+    // document.getElementById("xtraInputBox").style.display = "flex";
+   document.getElementById("raInputBox").value = "ThinkQuest";
     break;
 
-  case "ll": // Combat Coliseum
+  case "cc": // Combat Coliseum
     hideAndDisableEvents("ll", ["tq"]);
     document.querySelector("h1").innerHTML = "Combat Coliseum";
     document.querySelector("p").innerHTML = "E-SPORTS BGMI COMPETITION";
@@ -67,7 +67,7 @@ switch (detailValue) {
     document.getElementById("raInputBox").value = "CombatColiseum";
     break;
 
-  case "bb": // Hack'n Patch
+  case "hp": // Hack'n Patch
     hideAndDisableEvents("bb", ["tq"]);
     document.querySelector("h1").innerHTML = "Hack'n Patch";
     document.querySelector("p").innerHTML = "DEBUGGING CONTEST";
@@ -81,7 +81,7 @@ switch (detailValue) {
     document.getElementById("raInputBox").value = "Zenthra";
     break;
 
-  case "bf": // Battle of Boots
+  case "bt": // Battle of Boots
     hideAndDisableEvents("bf", []);
     document.querySelector("h1").innerHTML = "Battle of Boots";
     document.querySelector("p").innerHTML = "E-SPORTS (EFOOTBALL)";
@@ -99,61 +99,6 @@ switch (detailValue) {
     console.warn("Unknown event type in URL.");
     break;
 }
-
-// Form submission
-document.getElementById("myForm").addEventListener("submit", async function (event) {
-  event.preventDefault();
-  if (
-    clg_name_status &&
-    email_status &&
-    name_status &&
-    phone_status &&
-    mem1_status &&
-    mem2_status &&
-    mem3_status
-
-  ) {
-    submitLoader.style.display = "flex";
-    submitButton.style.display = "none";
-
-    const formData = Object.fromEntries(new FormData(this).entries());
-
-    try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        submitLoader.style.display = "none";
-        submitButton.style.display = "flex";
-        document.getElementById("myForm").reset();
-        removeActive();
-
-        // Redirect to confirmation page ✅
-        window.location.href = "confirmation.html";
-      } else {
-        submitLoader.style.display = "none";
-        submitButton.style.display = "flex";
-        message.textContent =
-          data.message || "There was a problem at our side. Please try again later.";
-        message.style.display = "flex";
-        setTimeout(() => {
-          message.style.display = "none";
-        }, 2000);
-      }
-    } catch (error) {
-      console.error("Error during form submission:", error);
-      submitLoader.style.display = "none";
-      submitButton.style.display = "flex";
-      alert("Failed to submit. Please check your internet and try again.");
-    }
-  }
-});
-
 // Notification handler
 document.querySelectorAll(".red").forEach((disabled) => {
   disabled.addEventListener("click", () => {

@@ -7,6 +7,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover"
     />
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+    <!-- <script src="https://unpkg.com/@supabase/supabase-js@2"></script> -->
+
     <script type="text/javascript" src="Data/Libraries/jQuery.js"></script>
     <link
       rel="preload"
@@ -69,7 +74,7 @@
     <link rel="stylesheet" type="text/css" href="Design/Home.css" />
     <link rel="stylesheet" type="text/css" href="Design/Countdown.css" />
     <link rel="stylesheet" type="text/css" href="Design/Register.css" />
-    <title>Taksha'24 - Register</title>
+    <title>Taksha'25 - Register</title>
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -124,8 +129,7 @@
     <h1></h1>
     <p></p>
     <div class="box">
-      <form id="myForm" action="/api/register" method="POST">
-        <div class="input-bx">
+      <form id="myForm" > <div class="input-bx">
           <input type="text" id="clg-name" name="college" required="required" />
           <span>Name of College</span>
         </div>
@@ -189,7 +193,7 @@
           </center>
         </div>
         <p class="message" style="display: none">
-          Thank you for joining&nbsp<span>TAKSHA'24</span>
+          Thank you for joining&nbsp<span>TAKSHA'25</span>
         </p>
       </form>
       <h3 class="other-events">Additional Participatory Events</h3>
@@ -204,11 +208,59 @@
       </div>
     </div>
   </div>
-    <script
-      type="text/javascript"
-      src="Interaction/InputLabelHandling.js"
-    ></script> 
-    <script type="text/javascript" src="Interaction/Register.js"></script>
-    <script></script>
+
+    <script type="text/javascript" src="Interaction/InputLabelHandling.js" ></script> 
+    <script type="text/javascript" src="Interaction/Register1.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> 
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+  const supabaseUrl = "https://iksjveeundmzsexizsdp.supabase.co"; 
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlrc2p2ZWV1bmRtenNleGl6c2RwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc3NDgyMDYsImV4cCI6MjA3MzMyNDIwNn0.LQFdQg95rDvIYHOmrK0-7oU62sQhbEI8t5lv7ZAtZKc";
+  const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+  const form = document.getElementById('myForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const event = formData.get('event');
+    const college = formData.get('college');
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const contactNumber = formData.get('contactNumber');
+    const member1 = formData.get('member1');
+    const member2 = formData.get('member2');
+    const member3 = formData.get('member3');
+
+    const { data, error } = await supabaseClient
+      .from('registrations')
+      .insert([{
+        event_name: event,
+        college_name: college,
+        leader_name: name,
+        leader_email: email,
+        leader_phone: contactNumber,
+        member2_name: member1 || null,
+        member3_name: member2 || null,
+        member4_name: member3 || null,
+      }]);
+
+    if (error) {
+      alert('Error: ' + error.message);
+      return;
+    }
+
+    // alert('Registration submitted successfully!');
+    window.location.href = "confirmation.html";
+
+    form.reset();
+  });
+});
+
+</script>
+
+  
   </body>
 </html>
