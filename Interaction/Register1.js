@@ -33,7 +33,7 @@ function hideAndDisableEvents(currentId, disableList) {
 switch (detailValue) {
   case "bc": // ByteTheClue treasure hunting
     hideAndDisableEvents("bc", []);
-    document.querySelector("h1").innerHTML = "ByteTheClue";
+    document.querySelector("h1").innerHTML = "Byte The Clue";
     document.querySelector("p").innerHTML = "TREASURE HUNTING EVENT";
     document.getElementById("extraInputBox").style.display = "flex";
     document.querySelector('input[name="member1"]').required = true;
@@ -46,7 +46,7 @@ switch (detailValue) {
 
   case "tq": // THINK QUEST idea presentation
     hideAndDisableEvents("tq", ["mm"]);
-    document.querySelector("h1").innerHTML = "THINK QUEST";
+    document.querySelector("h1").innerHTML = "Think Quest";
     document.querySelector("p").innerHTML = "IDEA PITCHING EVENT";
     // document.getElementById("extraInputBox").style.display = "flex";
     // document.querySelector('input[name="member1"]').required = true;

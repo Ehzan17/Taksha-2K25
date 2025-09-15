@@ -1,44 +1,51 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const carousel = document.querySelector(".carousel");
   const carouselWrapper = document.querySelector(".carousel-wrapper");
+  const items = document.querySelectorAll(".carousel-item");
 
-  let currentIndex = 0;
+  let currentStep = 0;
+  const totalSteps = 6;  // Now we have 6 total steps (0 to 5)
+
+  let cumulativeWidths = [];
+
+  function calculateWidths() {
+    cumulativeWidths = [0];
+
+    for (let i = 0; i < items.length; i++) {
+      cumulativeWidths.push(cumulativeWidths[i] + items[i].getBoundingClientRect().width);
+    }
+  }
 
   function updateCarousel() {
-    /* if (currentIndex === 0) {
-      document.getElementById("elites").classList.add("smallCarousel");
-      document.getElementById("farmfed").classList.add("largeCarousel");
-    } else {
-      document.getElementById("farmfed").classList.remove("largeCarousel");
-      document.getElementById("elites").classList.remove("smallCarousel");
-    } */
-    const translateValue = -currentIndex * 50 + "%";
-    carouselWrapper.style.transform = "translateX(" + translateValue + ")";
+    let translateX = 0;
+    if (currentStep === 0 && 1) {
+      // Step 5: Show Image 7 (Bromat) full width alone
+      translateX = cumulativeWidths[6];
+    }
+    if (currentStep >=2 ) {
+      // Steps 0 to 3: Two small images side by side
+      translateX = currentStep * items[0].getBoundingClientRect().width;
+    } else if (currentStep <= 1) {
+      // Step 4: Show Image 5 + Image 6 (Arabian3)
+      translateX = cumulativeWidths[4];  // Index of first of these two images
+    }    // Index of the Bromat image
+    
+
+    carouselWrapper.style.transform = `translateX(-${translateX}px)`;
   }
 
   function nextSlide() {
-    if (currentIndex === 3) {
-      currentIndex = (currentIndex + 2) % 6; // 6 is the total number of images
-      updateCarousel();
-      return true
-    }
-    currentIndex = (currentIndex + 1) % 6; // 6 is the total number of images
+    currentStep = (currentStep + 1) >= totalSteps ? 0 : currentStep + 1;
     updateCarousel();
   }
 
-  function prevSlide() {
-    currentIndex = (currentIndex - 1 + 6) % 6;
+  window.addEventListener('load', () => {
+    calculateWidths();
     updateCarousel();
-  }
+    setInterval(nextSlide, 3000);
+  });
 
-  setInterval(function () {
-    nextSlide();
-  }, 3000); // Adjust the interval for automatic scrolling
-
-  // Optional: Uncomment the lines below if you want to enable manual navigation using buttons
-  // const nextButton = document.getElementById("nextButton");
-  // const prevButton = document.getElementById("prevButton");
-
-  // nextButton.addEventListener("click", nextSlide);
-  // prevButton.addEventListener("click", prevSlide);
+  window.addEventListener('resize', () => {
+    calculateWidths();
+    updateCarousel();
+  });
 });
